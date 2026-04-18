@@ -1,0 +1,29 @@
+{
+  "name": "nimons360-live",
+  "version": "1.0.0",
+  "description": "Livestream coordinator for Nimons360 (RTMP ingest via MediaMTX, HLS playback, WebSocket notifications).",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "dev": "tsx watch src/server.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["nimons360", "livestream", "rtmp", "hls", "mediamtx"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "@fastify/websocket": "^11.2.0",
+    "fastify": "^5.8.5"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  }
+}

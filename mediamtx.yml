@@ -1,0 +1,22 @@
+logLevel: info
+logDestinations: [stdout]
+
+api: no
+metrics: no
+rtsp: no
+rtmp: yes
+rtmpAddress: :1935
+hls: yes
+hlsAddress: :8888
+hlsAllowOrigins: ["*"]
+hlsVariant: lowLatency
+hlsSegmentCount: 5
+hlsSegmentDuration: 1s
+hlsPartDuration: 200ms
+hlsSegmentMaxSize: 50M
+webrtc: no
+srt: no
+
+paths:
+  ~^live/.+$:
+    source: publisher

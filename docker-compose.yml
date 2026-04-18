@@ -1,0 +1,25 @@
+services:
+  mediamtx:
+    image: bluenviron/mediamtx:latest
+    container_name: nimons360-mediamtx
+    restart: unless-stopped
+    ports:
+      - "1935:1935"   # RTMP ingest
+      - "8888:8888"   # HLS playback
+    volumes:
+      - ./mediamtx.yml:/mediamtx.yml:ro
+
+  coordinator:
+    build: .
+    container_name: nimons360-coordinator
+    restart: unless-stopped
+    depends_on:
+      - mediamtx
+    environment:
+      PORT: 4000
+      PUBLIC_HOST: ${PUBLIC_HOST:-localhost}
+      RTMP_PORT: 1935
+      HLS_PORT: 8888
+      API_KEY: ${API_KEY:-}
+    ports:
+      - "4000:4000"

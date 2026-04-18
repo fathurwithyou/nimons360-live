@@ -10,7 +10,7 @@ hls: yes
 hlsAddress: :8888
 hlsAllowOrigins: ["*"]
 hlsVariant: lowLatency
-hlsSegmentCount: 5
+hlsSegmentCount: 7
 hlsSegmentDuration: 1s
 hlsPartDuration: 200ms
 hlsSegmentMaxSize: 50M

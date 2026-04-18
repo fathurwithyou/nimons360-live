@@ -11,24 +11,6 @@ A tiny service that lets a family member broadcast live video to their family. I
 
 The Android app pushes video from the camera to `rtmp://host:1935/live/<streamKey>` using RootEncoder, and viewers pull `http://host:8888/live/<streamKey>/index.m3u8` with ExoPlayer.
 
-## Architecture
-
-```
-┌────────────────────┐    RTMP    ┌───────────────┐    HLS    ┌──────────────┐
-│ Broadcaster (App)  │──────────▶ │   MediaMTX    │ ────────▶ │ Viewer (App) │
-└────────┬───────────┘            └───────────────┘           └──────┬───────┘
-         │                                                           │
-         │  POST /api/streams/start                                   │  GET /api/families/:id/streams
-         │  DELETE /api/streams/:id                                   │  ws /ws/live-streams
-         ▼                                                           ▼
-                    ┌─────────────────────────────────┐
-                    │   Coordinator (Fastify, TS)     │
-                    │   in-memory stream registry     │
-                    │   broadcasts stream_started /   │
-                    │   stream_ended over WebSocket   │
-                    └─────────────────────────────────┘
-```
-
 ## API
 
 ### `POST /api/streams/start`
